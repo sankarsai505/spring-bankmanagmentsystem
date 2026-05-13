@@ -1,12 +1,9 @@
 package com.empopertionssix.com.service;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-
 import com.empopertionssix.com.dto.AccountCustomerDetails;
 import com.empopertionssix.com.dto.AccountResponseDto;
 import com.empopertionssix.com.entity.Account;
@@ -16,17 +13,16 @@ import com.empopertionssix.com.entity.TransactionType;
 import com.empopertionssix.com.repo.AccountRepo;
 import com.empopertionssix.com.repo.CustumerDetailsRepo;
 import com.empopertionssix.com.repo.TransactionRepository;
-
 import jakarta.transaction.Transactional;
 
 @Service
 public class AccountService implements AccountServiceInterface 
 {
 
-    private final TransactionRepository transactionRepository;
+    	private final TransactionRepository transactionRepository;
 	private final AccountRepo accountRepo;
-    private final ModelMapper modelMapper;
-    private final CustumerDetailsRepo customerRepo;
+    	private final ModelMapper modelMapper;
+    	private final CustumerDetailsRepo customerRepo;
 
     // ✅ Constructor
     public AccountService(AccountRepo accountRepo, ModelMapper modelMapper,
@@ -34,7 +30,7 @@ public class AccountService implements AccountServiceInterface
         this.accountRepo = accountRepo;
         this.modelMapper = modelMapper;
         this.customerRepo = customerRepo;
-		this.transactionRepository = transactionRepository;
+	this.transactionRepository = transactionRepository;
     }
 
     // ✅ Method OUTSIDE constructor
@@ -150,4 +146,5 @@ public class AccountService implements AccountServiceInterface
 
 	    return fromAccount.getBalance();
 	}
+}
 }
