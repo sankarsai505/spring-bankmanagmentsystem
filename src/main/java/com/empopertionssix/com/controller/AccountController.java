@@ -1,7 +1,5 @@
 package com.empopertionssix.com.controller;
-
 import java.math.BigDecimal;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,13 +9,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.empopertionssix.com.dto.TransferRequest;
 import com.empopertionssix.com.entity.Account;
 import com.empopertionssix.com.entity.TransactionType;
 import com.empopertionssix.com.service.AccountService;
-
-
 @RestController
 @RequestMapping("/api/accounts")
 public class AccountController {
@@ -40,15 +35,16 @@ public class AccountController {
     	Account savedAccount = accountService.addAccountDetails(customerId, account);
 
 	 
-    return ResponseEntity.status(HttpStatus.CREATED).body(savedAccount);
+    return ResponseEntity.status(HttpStatus.CREATE
+		   D).body(savedAccount);
      }
-  
-  @GetMapping("/highestbalance")  
+
+  @GetMapping("/highestbalance")
 public ResponseEntity<?>    findCustomersWithHighestBalance()
 {
-	return ResponseEntity.ok(accountService.findCustomersWithHighestBalance());
-    	
- }
+        return ResponseEntity.ok(accountService.findCustomersWithHighestBalance());
+
+ }    	
   @PostMapping("/deposit")
  public ResponseEntity<?> depositAmmount(@RequestParam String accountNumber,@RequestParam  BigDecimal amount, @RequestParam TransactionType transactionType)
   {
@@ -76,5 +72,5 @@ public ResponseEntity<?>    findCustomersWithHighestBalance()
               + updatedBalance;
 
       return ResponseEntity.ok(responseMessage);
-  }
+	  }
 }
