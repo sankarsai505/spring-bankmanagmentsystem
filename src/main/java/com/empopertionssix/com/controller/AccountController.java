@@ -35,8 +35,7 @@ public class AccountController {
     	Account savedAccount = accountService.addAccountDetails(customerId, account);
 
 	 
-    return ResponseEntity.status(HttpStatus.CREATE
-		   D).body(savedAccount);
+    return ResponseEntity.status(HttpStatus.CREATED).body(savedAccount);
      }
 
   @GetMapping("/highestbalance")
