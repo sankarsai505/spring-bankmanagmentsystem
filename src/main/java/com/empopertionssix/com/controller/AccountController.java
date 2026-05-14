@@ -32,18 +32,9 @@ public class AccountController {
     @PostMapping("/addAccount/{customerId}")
    public ResponseEntity<?> addAccountDetails(@PathVariable Long customerId,@RequestBody Account account)
      {
-    	Account savedAccount = accountService.addAccountDetails(customerId, account);
-
-	 
+    	Account savedAccount = accountService.addAccountDetails(customerId, account);	 
     return ResponseEntity.status(HttpStatus.CREATED).body(savedAccount);
-     }
-
-  @GetMapping("/highestbalance")
-public ResponseEntity<?>    findCustomersWithHighestBalance()
-{
-        return ResponseEntity.ok(accountService.findCustomersWithHighestBalance());
-
- }    	
+     }  	
   @PostMapping("/deposit")
  public ResponseEntity<?> depositAmmount(@RequestParam String accountNumber,@RequestParam  BigDecimal amount, @RequestParam TransactionType transactionType)
   {
