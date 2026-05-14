@@ -22,19 +22,13 @@ public class AccountController {
      public  AccountController(AccountService accountService)
      {
     	 this.accountService=accountService;
-     }
-    @GetMapping("/balance")
-    public ResponseEntity<?> getByBalance(
-            @RequestParam BigDecimal balance) {
-        return ResponseEntity.ok(accountService.getByBalance(balance));
-    }
-    
+     } 
     @PostMapping("/addAccount/{customerId}")
    public ResponseEntity<?> addAccountDetails(@PathVariable Long customerId,@RequestBody Account account)
      {
     	Account savedAccount = accountService.addAccountDetails(customerId, account);	 
     return ResponseEntity.status(HttpStatus.CREATED).body(savedAccount);
-     }  	
+     }  
   @PostMapping("/deposit")
  public ResponseEntity<?> depositAmmount(@RequestParam String accountNumber,@RequestParam  BigDecimal amount, @RequestParam TransactionType transactionType)
   {
