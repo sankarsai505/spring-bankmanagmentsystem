@@ -2,8 +2,12 @@ package com.empopertionssix.com.service;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+
 import com.empopertionssix.com.dto.AccountCustomerDetails;
 import com.empopertionssix.com.dto.AccountResponseDto;
 import com.empopertionssix.com.entity.Account;
@@ -13,16 +17,17 @@ import com.empopertionssix.com.entity.TransactionType;
 import com.empopertionssix.com.repo.AccountRepo;
 import com.empopertionssix.com.repo.CustumerDetailsRepo;
 import com.empopertionssix.com.repo.TransactionRepository;
+
 import jakarta.transaction.Transactional;
 
 @Service
 public class AccountService implements AccountServiceInterface 
 {
 
-    	private final TransactionRepository transactionRepository;
+    private final TransactionRepository transactionRepository;
 	private final AccountRepo accountRepo;
-    	private final ModelMapper modelMapper;
-    	private final CustumerDetailsRepo customerRepo;
+    private final ModelMapper modelMapper;
+    private final CustumerDetailsRepo customerRepo;
 
     // ✅ Constructor
     public AccountService(AccountRepo accountRepo, ModelMapper modelMapper,
@@ -75,12 +80,6 @@ public class AccountService implements AccountServiceInterface
 	    transactionRepository.save(transaction);
         return accountRepo.save(account);
     }
-
-	@Override
-	public List<AccountCustomerDetails> findCustomersWithHighestBalance() {
-		// TODO Auto-generated method stub
-		return accountRepo.findCustomersWithHighestBalance();
-	}
 	@Override
 	@Transactional
 	public BigDecimal depositAmmount(String accountNumber, BigDecimal amount, TransactionType transactionType) {
@@ -134,7 +133,6 @@ public class AccountService implements AccountServiceInterface
 	    // Save accounts
 	    accountRepo.save(fromAccount);
 	    accountRepo.save(toAccount);
-
 	    // Save transaction
 	    Transaction transaction = new Transaction();
 	    transaction.setAmount(amount);
@@ -143,8 +141,6 @@ public class AccountService implements AccountServiceInterface
 	    transaction.setFromAccount(fromAccount);
 	    transaction.setToAccount(toAccount);
 	    transactionRepository.save(transaction);
-
 	    return fromAccount.getBalance();
 	}
-}
 }

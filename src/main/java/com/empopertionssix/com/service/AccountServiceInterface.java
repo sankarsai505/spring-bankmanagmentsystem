@@ -22,7 +22,6 @@ public interface AccountServiceInterface {
     // add deails of  throuh customer id
     Account addAccountDetails(Long customerId, Account account);
     // maximum balance accounts    
-    List<AccountCustomerDetails> findCustomersWithHighestBalance();
 	BigDecimal depositAmmount(String accountNumber, BigDecimal amount, TransactionType transactionType);
 	BigDecimal accountToAccountTransfer(String fromAccountNumber, String toAccountNumber, BigDecimal amount, TransactionType transactionType,String messge );
 	

@@ -80,10 +80,15 @@ public class CustumerDetailController {
     public ResponseEntity<List<CustumerDetailsDto>> getCustomersWithoutAccounts() {
 		return ResponseEntity.status(HttpStatus.OK).body(customerService.getCustomersWithoutAccounts());
 	}
-  @GetMapping("/withaccounts")  
-  public ResponseEntity<?>  getCustomersWithAccountsController(){
-	return ResponseEntity.status(HttpStatus.FOUND).body(customerService.getCustomersWithAccounts());
-  }
+  // ✅ Get Customers With Accounts
+    @GetMapping("/withaccounts")
+    public ResponseEntity<List<CustumerDetailsDto>> getCustomersWithAccountsController() {
+
+        List<CustumerDetailsDto> customers =
+                customerService.getCustomersWithAccounts();
+
+        return ResponseEntity.ok(customers);
+    }
   @PostMapping("/sendreminders")
    public ResponseEntity<?> sendRemindersToCustomersWithoutAccounts()
   {

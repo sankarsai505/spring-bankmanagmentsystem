@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.empopertionssix.com.dto.AccountCustomerDetails;
 import com.empopertionssix.com.entity.Account;
+import com.empopertionssix.com.entity.CustomerDetails;
 
 import jakarta.transaction.Transactional;
 
@@ -28,10 +29,7 @@ public interface AccountRepo  extends  JpaRepository<Account,Long>
             "GROUP BY c.customer_name, c.customer_gender, a.account_id, a.account_number, a.account_type " +
             "ORDER BY max(a.balance) DESC",
     nativeQuery = true)
-	List<AccountCustomerDetails> findCustomersWithHighestBalance();
-
-
-
+	List<CustomerDetails> findCustomersWithHighestBalance();
 	Account findByAccountNumber(String accountNumber);
 	
 	@Modifying

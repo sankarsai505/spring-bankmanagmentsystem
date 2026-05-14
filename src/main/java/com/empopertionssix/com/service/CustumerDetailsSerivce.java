@@ -1,5 +1,4 @@
 package com.empopertionssix.com.service;
-
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -101,13 +100,6 @@ public class CustumerDetailsSerivce implements CustumerDetailsSerivceInterFace {
 				.map(c -> modelMapper.map(c, CustumerDetailsDto.class))
 				.toList();
 	}
-
-	@Override
-	public List<AccountCustomerDetails> getCustomersWithAccounts() {
-		// TODO Auto-generated method stub
-		return customerRepo.findByCustomersWithAccounts();
-	}
-
 	@Override
 	@Transactional
 	public void sendRemindersToCustomersWithoutAccounts() 
@@ -166,5 +158,16 @@ public class CustumerDetailsSerivce implements CustumerDetailsSerivceInterFace {
 		}
 		return results;
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	@Transactional
+	public List<CustumerDetailsDto> getCustomersWithAccounts() {
+		// TODO Auto-generated method stub
+		return customerRepo.findAll()
+				.stream()
+				.filter(c -> c.getAccounts() != null && !c.getAccounts().isEmpty())
+				.map(c -> modelMapper.map(c, CustumerDetailsDto.class))
+				.toList();
 	}	
 }

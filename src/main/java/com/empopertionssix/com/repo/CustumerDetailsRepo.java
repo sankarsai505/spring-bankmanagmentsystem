@@ -32,13 +32,6 @@ public interface CustumerDetailsRepo extends JpaRepository<CustomerDetails, Long
     List<CustumerDetailsDto> findCustomersWithoutAccountsDto();
 
     // ✅ FIXED: Native query for customers with accounts
-    @Query(value = "SELECT c.customer_name, c.customer_gender, a.account_id, " +
-                   "a.account_number, a.account_type, a.balance " +
-                   "FROM customer_details c " +
-                   "LEFT JOIN account a ON c.customer_account_id = a.customer_id",
-           nativeQuery = true)
-    List<AccountCustomerDetails> findByCustomersWithAccounts();
-
 	Optional<CustomerDetails> findByCustomerEmail(String customerEmail);
 
 	  @Query(value="SELECT c.state_name, COUNT(*) " +
@@ -46,4 +39,5 @@ public interface CustumerDetailsRepo extends JpaRepository<CustomerDetails, Long
 	           "GROUP BY c.state_name",
 	           nativeQuery = true)
 	List<Object[]> countCustomersByStateName();
+
 }

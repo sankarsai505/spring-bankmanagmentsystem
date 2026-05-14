@@ -31,7 +31,7 @@ public interface CustumerDetailsSerivceInterFace {
     //details customer names who don't have any account
     List<CustumerDetailsDto> getCustomersWithoutAccounts();
     
-    List<AccountCustomerDetails> getCustomersWithAccounts();
+    List<CustumerDetailsDto> getCustomersWithAccounts();
     
     void sendRemindersToCustomersWithoutAccounts();
     
