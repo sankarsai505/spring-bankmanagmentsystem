@@ -38,4 +38,6 @@ public interface CustumerDetailsSerivceInterFace {
     void sendEmailToCustomerByEmail(String customerEmail);
     // number of customers in each state
     List<Object[]> countCustomersByStateName();
+    
+    // customers and city name
 }
