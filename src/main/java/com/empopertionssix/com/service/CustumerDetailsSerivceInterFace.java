@@ -2,7 +2,7 @@ package com.empopertionssix.com.service;
 
 import java.util.List;
 
-import com.empopertionssix.com.dto.AccountCustomerDetails;
+import com.empopertionssix.com.dto.AddressDto;
 import com.empopertionssix.com.dto.CustumerDetailsDto;
 import com.empopertionssix.com.entity.CustomerDetails;
 import com.empopertionssix.com.entity.CustomerGender;
@@ -39,5 +39,6 @@ public interface CustumerDetailsSerivceInterFace {
     // number of customers in each state
     List<Object[]> countCustomersByStateName();
     
-    // customers and city name
+    // customers and city name and customerDetails
+    List<AddressDto> getCustomerDetailsWithCityName(String cityName);
 }

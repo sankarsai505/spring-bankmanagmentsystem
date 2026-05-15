@@ -5,7 +5,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.empopertionssix.com.dto.AccountCustomerDetails;
+import com.empopertionssix.com.dto.AddressDto;
 import com.empopertionssix.com.dto.CustumerDetailsDto;
 import com.empopertionssix.com.entity.CustomerDetails;
 import com.empopertionssix.com.entity.CustomerGender;
@@ -169,5 +169,15 @@ public class CustumerDetailsSerivce implements CustumerDetailsSerivceInterFace {
 				.filter(c -> c.getAccounts() != null && !c.getAccounts().isEmpty())
 				.map(c -> modelMapper.map(c, CustumerDetailsDto.class))
 				.toList();
-	}	
+	}
+	@Override
+	public List<AddressDto> getCustomerDetailsWithCityName(
+	        String cityName) {
+
+	    return customerRepo
+	            .findByCustomerAddressCityNameIgnoreCase(cityName)
+	            .stream()
+	            .map(c -> modelMapper.map(c, AddressDto.class))
+	            .toList();
+	}
 }

@@ -6,7 +6,9 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import com.empopertionssix.com.dto.AccountCustomerDetails;
+import org.springframework.data.repository.query.Param;
+
+import com.empopertionssix.com.dto.AddressDto;
 import com.empopertionssix.com.dto.CustumerDetailsDto;
 import com.empopertionssix.com.entity.CustomerDetails;
 import com.empopertionssix.com.entity.CustomerGender;
@@ -40,4 +42,25 @@ public interface CustumerDetailsRepo extends JpaRepository<CustomerDetails, Long
 	           nativeQuery = true)
 	List<Object[]> countCustomersByStateName();
 
+	List<CustomerDetails>
+	findByCustomerAddressCityNameIgnoreCase(String cityName);
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+/*private String customerName;
+private String cityName;
+private String stateName;*/
+
+
+
+
