@@ -1,5 +1,6 @@
 package com.empopertionssix.com.entity;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -45,11 +47,21 @@ public class CustomerDetails {
 
     @Embedded
     private Coustmeraddress customerAddress;
+    
+    @Column(name = "account_opening_date")
+    private LocalDate accountOpeningDate;
+    
+    @PrePersist
+    public void prePersist() {
+        if (accountOpeningDate == null) {
+            accountOpeningDate = LocalDate.now();
+        }
+        }
 
     @OneToMany(mappedBy = "customer",
                cascade = CascadeType.ALL,
                fetch = FetchType.LAZY,
                orphanRemoval = true)
     @JsonManagedReference
-    private List<Account>  accounts = new ArrayList<>(); ;
+    private List<Account>  accounts = new ArrayList<>();
 }
