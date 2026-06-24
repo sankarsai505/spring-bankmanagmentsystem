@@ -1,6 +1,7 @@
 package com.empopertionssix.com.entity;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
@@ -35,6 +36,11 @@ public class Transaction {
 
     @Column(nullable = false)
     private LocalDateTime transactionDate;
+    
+    @PrePersist
+    public void prePersist() {
+        this.transactionDate = LocalDateTime.now();
+    }
 
     @ManyToOne
     @JoinColumn(name = "from_account_id")
@@ -43,9 +49,5 @@ public class Transaction {
     @ManyToOne
     @JoinColumn(name = "to_account_id")
     private Account toAccount;
-
-    @PrePersist
-    public void prePersist() {
-        this.transactionDate = LocalDateTime.now();
-    }
+    
 }
