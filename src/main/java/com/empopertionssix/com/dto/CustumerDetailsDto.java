@@ -1,5 +1,8 @@
 package com.empopertionssix.com.dto;
 
+
+import java.time.LocalDate;
+
 import com.empopertionssix.com.entity.CustomerGender;
 
 import lombok.AllArgsConstructor;
@@ -14,5 +17,5 @@ public class CustumerDetailsDto {
 	 private String customerName;
 	 private CustomerGender customerGender;
 	 private String customerEmail;
-
+	 private LocalDate accountOpeningDate;
 }

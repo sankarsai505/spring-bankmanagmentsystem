@@ -1,5 +1,6 @@
 package com.empopertionssix.com.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.empopertionssix.com.dto.AddressDto;
@@ -41,4 +42,7 @@ public interface CustumerDetailsSerivceInterFace {
     
     // customers and city name and customerDetails
     List<AddressDto> getCustomerDetailsWithCityName(String cityName);
+    // get by local date
+    List<CustumerDetailsDto> getCustomersByAccountOpeningDate(LocalDate accountOpeningDate);
+    
 }

@@ -1,4 +1,5 @@
 package com.empopertionssix.com.service;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -179,5 +180,14 @@ public class CustumerDetailsSerivce implements CustumerDetailsSerivceInterFace {
 	            .stream()
 	            .map(c -> modelMapper.map(c, AddressDto.class))
 	            .toList();
+	}
+
+	@Override
+	public List<CustumerDetailsDto> getCustomersByAccountOpeningDate(LocalDate accountOpeningDate) {
+		// TODO Auto-generated method stub
+		return customerRepo.findByAccountOpeningDate(accountOpeningDate)
+				.stream()
+				.map(c -> modelMapper.map(c, CustumerDetailsDto.class))
+				.toList();
 	}
 }

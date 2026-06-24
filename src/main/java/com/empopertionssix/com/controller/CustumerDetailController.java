@@ -1,7 +1,9 @@
 package com.empopertionssix.com.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -144,6 +146,24 @@ public class CustumerDetailController {
       return ResponseEntity.ok(
               customerService
                       .getCustomerDetailsWithCityName(cityName));
+  }
+  
+  @GetMapping("/byAccountOpeningDate")
+ public ResponseEntity<?> findByAccountOpeningDate(@RequestParam @DateTimeFormat(pattern = "dd-MM-yyyy")   LocalDate accountOpeningDate)
+ {
+	 try {
+		  List<CustumerDetailsDto> customers = customerService.getCustomersByAccountOpeningDate(accountOpeningDate);
+		  
+		  if (customers.isEmpty()) {
+			  return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No customers found with the given account opening date");
+		  }
+		  
+		  return ResponseEntity.ok(customers);
+	  } catch (Exception e) {
+		  System.err.println("Error fetching customers by account opening date: " + e.getMessage());
+		  return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+	  }
+	  
   }
 }
   
